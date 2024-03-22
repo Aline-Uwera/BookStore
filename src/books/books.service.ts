@@ -20,18 +20,6 @@ export class BooksService {
     const book = await this.bookRepository.findOne({ where: { ISBN } });
     return book;
   }
-
-  findAll() {
-    return `This action returns all books`;
-  }
-
-  // findOne(`isbn/${ISBN: string}`) {
-  //   return `This action returns a #${id} book`;
-  // }
-
-  update(id: number, updateBookDto: UpdateBookDto) {
-    return `This action updates a #${id} book`;
-  }
   async updateByISBN(
     ISBN: string,
     updateBookDto: UpdateBookDto,
@@ -62,9 +50,5 @@ export class BooksService {
     }
 
     return this.bookRepository.save(book);
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} book`;
   }
 }

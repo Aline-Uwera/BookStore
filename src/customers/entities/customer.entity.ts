@@ -1,8 +1,12 @@
-import { Entity, Column, PrimaryColumn } from 'typeorm';
+// customer.entity.ts
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
 export class Customer {
-  @PrimaryColumn({ unique: true })
+  @PrimaryGeneratedColumn()
+  id: number;
+
+  @Column({unique: true})
   userId: string;
 
   @Column()
@@ -15,7 +19,7 @@ export class Customer {
   address: string;
 
   @Column({ nullable: true })
-  address2: string;
+  address2?: string;
 
   @Column()
   city: string;

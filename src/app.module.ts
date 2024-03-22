@@ -6,17 +6,20 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { CustomersModule } from './customers/customers.module';
 import { Book } from './books/entities/book.entity';
 import { Customer } from './customers/entities/customer.entity';
+import * as dotenv from 'dotenv'; // Import dotenv
+
+dotenv.config();
 
 @Module({
   imports: [
     TypeOrmModule.forRoot({
       type: 'mysql',
-      host: 'localhost',
-      port: 3306,
-      username: 'root',
-      password: 'qgq3Tm+4V0y|',
-      database: 'bookstore',
-      entities:[Book, Customer],
+      host: process.env.DB_HOST,
+      port: parseInt(process.env.DB_PORT, 10),
+      username: process.env.DB_USERNAME,
+      password: process.env.DB_PASSWORD,
+      database: process.env.DB_NAME,
+      entities: [Book, Customer],
       synchronize: true,
     }),
     BooksModule,

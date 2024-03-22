@@ -12,27 +12,21 @@ export class CreateCustomerDto {
   userId: string;
 
   @IsNotEmpty()
-  @IsString()
   name: string;
 
   @IsNotEmpty()
-  @IsPhoneNumber('US')
   phone: string;
 
   @IsNotEmpty()
-  @IsString()
   address: string;
 
   @IsOptional()
-  @IsString()
   address2?: string;
 
   @IsNotEmpty()
-  @IsString()
   city: string;
 
   @IsNotEmpty()
-  @IsString()
   @IsIn([
     'AL',
     'AK',
@@ -88,6 +82,5 @@ export class CreateCustomerDto {
   state: string;
 
   @IsNotEmpty()
-  @IsString()
   zipcode: string;
 }

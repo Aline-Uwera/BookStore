@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryColumn } from 'typeorm';
 
 @Entity()
 export class Book {
-  @PrimaryColumn({unique: true})
+  @PrimaryColumn({ unique: true })
   ISBN: string;
 
   @Column()
@@ -17,7 +17,7 @@ export class Book {
   @Column()
   genre: string;
 
-  @Column('decimal', { precision: 10, scale: 2 })
+  @Column({ type: 'float' })
   price: number;
 
   @Column()

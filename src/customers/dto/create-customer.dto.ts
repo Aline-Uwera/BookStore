@@ -1,3 +1,4 @@
+import { ApiProperty } from '@nestjs/swagger';
 import {
   IsEmail,
   IsNotEmpty,
@@ -8,24 +9,31 @@ import {
 } from 'class-validator';
 
 export class CreateCustomerDto {
+  @ApiProperty()
   @IsEmail()
   userId: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   name: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   phone: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   address: string;
 
+  @ApiProperty()
   @IsOptional()
   address2?: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   city: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   @IsIn([
     'AL',
@@ -81,6 +89,7 @@ export class CreateCustomerDto {
   ])
   state: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   zipcode: string;
 }

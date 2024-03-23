@@ -1,33 +1,34 @@
-import {
-  IsISBN,
-  IsNotEmpty,
-  IsNumber,
-  IsPositive,
-  IsString,
-  Min,
-} from 'class-validator';
+import { ApiProperty } from '@nestjs/swagger';
+import { IsNotEmpty, IsNumber, IsPositive } from 'class-validator';
 
 export class CreateBookDto {
+  @ApiProperty()
   @IsNotEmpty()
   ISBN: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   title: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   Author: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   description: string;
 
+  @ApiProperty()
   @IsNotEmpty()
   genre: string;
 
+  @ApiProperty()
   @IsNotEmpty()
-  @IsNumber()
   @IsPositive()
+  @IsNumber()
   price: number;
 
+  @ApiProperty()
   @IsNotEmpty()
   quantity: number;
 }

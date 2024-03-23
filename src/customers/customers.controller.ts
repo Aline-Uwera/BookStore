@@ -17,11 +17,23 @@ import { CustomersService } from './customers.service';
 import { CreateCustomerDto } from './dto/create-customer.dto';
 import { Response } from 'express';
 import { UserIdQuery } from './dto/user-id-query.dto';
-
+import { ApiBadRequestResponse, ApiCreatedResponse, ApiNotFoundResponse, ApiTags, ApiUnprocessableEntityResponse } from '@nestjs/swagger';
+import { Customer } from './entities/customer.entity';
+@ApiTags('Customers')
 @Controller('customers')
 export class CustomersController {
   constructor(private readonly customersService: CustomersService) {}
 
+  @ApiCreatedResponse({
+    description: 'Added customer successfully.',
+    type: Customer,
+  })
+  @ApiUnprocessableEntityResponse({
+    description: 'Already existing Customer',
+  })
+  @ApiBadRequestResponse({
+    description: 'Illegal, missing, or malformed input',
+  })
   @Post()
   async createCustomer(
     @Body() createCustomerDto: CreateCustomerDto,
@@ -53,6 +65,9 @@ export class CustomersController {
     }
   }
 
+  @ApiNotFoundResponse({
+    description: 'ID does not exist',
+  })
   @Get(':id')
   async getCustomerById(@Param('id', new ParseIntPipe()) id: number) {
     const customer = await this.customersService.getCustomerById(id);
@@ -63,6 +78,9 @@ export class CustomersController {
     return customer;
   }
 
+  @ApiNotFoundResponse({
+    description: 'User-ID does not exist.',
+  })
   @Get()
   async getCustomerByUserId(@Query(ValidationPipe) userIdQuery: UserIdQuery) {
     const customer = await this.customersService.findByUserId(
